@@ -116,6 +116,8 @@ kubectl set image deployment/hello-app hello-app=kube-trainer-app:v2
 
 This tells Kubernetes: "Change the container named `hello-app` in the Deployment to use image `kube-trainer-app:v2`."
 
+> 💡 **Best practice:** In real-world workflows, you should update the `image` field in your `deployment.yaml` manifest and run `kubectl apply -f app/deployment.yaml` instead. This keeps your YAML files as the **source of truth** and makes changes trackable in version control. We're using `kubectl set image` here because it's a quick way to learn how rolling updates work.
+
 ### Step 5: Watch the Rollout
 
 ```bash
