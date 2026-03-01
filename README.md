@@ -77,6 +77,7 @@ When VSCode opens, it should automatically connect to WSL2 (you'll see **"WSL: U
 |---|---|---|
 | **Kubernetes** | `ms-kubernetes-tools.vscode-kubernetes-tools` | Cluster explorer, manifest intellisense |
 | **YAML** | `redhat.vscode-yaml` | YAML syntax highlighting + Kubernetes schema validation |
+| **Markdown Preview Enhanced** | `shd101wyy.markdown-preview-enhanced` | Better markdown preview for reading phase lessons |
 
 Install them via the Extensions sidebar (`Ctrl+Shift+X`) or from the terminal:
 
@@ -84,6 +85,7 @@ Install them via the Extensions sidebar (`Ctrl+Shift+X`) or from the terminal:
 code --install-extension ms-vscode-remote.remote-wsl
 code --install-extension ms-kubernetes-tools.vscode-kubernetes-tools
 code --install-extension redhat.vscode-yaml
+code --install-extension shd101wyy.markdown-preview-enhanced
 ```
 
 ### 4. Verify Setup
