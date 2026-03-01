@@ -140,14 +140,14 @@ In production, you'd have multiple physical or virtual machines forming a cluste
 - Provides the full Kubernetes API — everything you learn with minikube works the same way in production clusters
 
 ```
-┌── Your Machine (WSL2) ──────────────────┐
+┌── Your Machine (WSL2) ───────────────────┐
 │                                          │
 │  ┌── minikube (single-node cluster) ──┐  │
 │  │                                    │  │
 │  │  Control Plane + Worker Node       │  │
-│  │  ┌────────┐  ┌────────┐           │  │
-│  │  │  Pod   │  │  Pod   │           │  │
-│  │  └────────┘  └────────┘           │  │
+│  │  ┌────────┐  ┌────────┐            │  │
+│  │  │  Pod   │  │  Pod   │            │  │
+│  │  └────────┘  └────────┘            │  │
 │  │                                    │  │
 │  └────────────────────────────────────┘  │
 └──────────────────────────────────────────┘
