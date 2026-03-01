@@ -1,0 +1,55 @@
+[
+    {
+        "id": "node-installed",
+        "title": "Node.js is installed",
+        "type": "command",
+        "command": "node --version",
+        "expect": {
+            "exitCode": 0
+        },
+        "fix": {
+            "file": "README.md",
+            "section": "Lesson 1: Run the App Locally"
+        }
+    },
+    {
+        "id": "docker-installed",
+        "title": "Docker is installed",
+        "type": "command",
+        "command": "docker --version",
+        "expect": {
+            "exitCode": 0
+        },
+        "fix": {
+            "file": "README.md",
+            "section": "Lesson 2: Containerize with Docker"
+        }
+    },
+    {
+        "id": "docker-running",
+        "title": "Docker daemon is running",
+        "type": "command",
+        "command": "docker info --format '{{.ServerVersion}}'",
+        "expect": {
+            "exitCode": 0
+        },
+        "fix": {
+            "file": "README.md",
+            "section": "Lesson 2: Containerize with Docker"
+        }
+    },
+    {
+        "id": "docker-image-built",
+        "title": "kube-trainer-app Docker image exists",
+        "type": "command",
+        "command": "docker images kube-trainer-app --format '{{.Repository}}'",
+        "expect": {
+            "exitCode": 0,
+            "outputContains": "kube-trainer-app"
+        },
+        "fix": {
+            "file": "README.md",
+            "section": "Build the Image"
+        }
+    }
+]

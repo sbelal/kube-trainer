@@ -1,0 +1,11 @@
+{
+  "name": "kube-trainer",
+  "version": "1.0.0",
+  "description": "Master Kubernetes by doing. Structured phases with built-in verification.",
+  "main": "verify-phase.js",
+  "scripts": {
+    "verify": "node verify-phase.js"
+  },
+  "keywords": ["kubernetes", "k8s", "training", "learning"],
+  "license": "MIT"
+}

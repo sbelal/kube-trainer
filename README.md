@@ -1,2 +1,186 @@
-# kube-trainer
-Master Kubernetes by doing. Kube-trainer provides a structured, step-by-step roadmap to K8s mastery, featuring built-in validation tests to ensure you've nailed each concept before moving on.
+# 🧊 Kube-Trainer
+
+**Master Kubernetes by doing.** A structured, step-by-step roadmap to Kubernetes mastery with built-in verification to ensure you've nailed each concept before moving on.
+
+---
+
+## Who Is This For?
+
+Software engineers who:
+
+- ✅ Know Docker (images, containers, Dockerfiles)
+- ✅ Have a Windows 11 machine with WSL2 (Ubuntu)
+- ❌ Are new to Kubernetes
+
+---
+
+## Prerequisites
+
+Before you begin, ensure you have:
+
+| Tool | Purpose | Check |
+|---|---|---|
+| **Windows 11** | Host OS | You're here |
+| **WSL2 (Ubuntu)** | Linux environment for all commands | `wsl --list --verbose` in PowerShell |
+| **Docker** | Container runtime (inside WSL2) | `docker --version` in WSL2 terminal |
+| **Node.js 18+** | Runs the verification engine | `node --version` in WSL2 terminal |
+| **Git** | Clone this repo | `git --version` in WSL2 terminal |
+| **VSCode** | Code editor | [Download](https://code.visualstudio.com/) |
+
+> 💡 **Node.js & Docker should be installed inside WSL2**, not on Windows. If you need to install Node.js in WSL2, run:
+> ```bash
+> curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+> sudo apt-get install -y nodejs
+> ```
+
+---
+
+## Getting Started
+
+### 1. Clone the Repo in WSL2
+
+Open your WSL2 Ubuntu terminal and clone the repo:
+
+```bash
+# Open WSL2 (from PowerShell or Start Menu, type "Ubuntu")
+# Navigate to where you want to store the project
+cd ~
+
+# Clone the repo
+git clone https://github.com/YOUR_USERNAME/kube-trainer.git
+cd kube-trainer
+```
+
+### 2. Open in VSCode
+
+Launch VSCode connected to WSL2:
+
+```bash
+code .
+```
+
+> 💡 **First time?** If `code .` doesn't work, open VSCode on Windows, press `Ctrl+Shift+P`, type **"Shell Command: Install 'code' command in PATH"**, and restart your WSL2 terminal.
+
+### 3. Set Up VSCode for WSL2
+
+When VSCode opens, it should automatically connect to WSL2 (you'll see **"WSL: Ubuntu"** in the bottom-left corner). If prompted, install the **WSL** extension.
+
+#### Required Extension
+
+| Extension | ID | Purpose |
+|---|---|---|
+| **WSL** | `ms-vscode-remote.remote-wsl` | Enables VSCode to work inside WSL2 |
+
+#### Recommended Extensions
+
+| Extension | ID | Purpose |
+|---|---|---|
+| **Kubernetes** | `ms-kubernetes-tools.vscode-kubernetes-tools` | Cluster explorer, manifest intellisense |
+| **YAML** | `redhat.vscode-yaml` | YAML syntax highlighting + Kubernetes schema validation |
+
+Install them via the Extensions sidebar (`Ctrl+Shift+X`) or from the terminal:
+
+```bash
+code --install-extension ms-vscode-remote.remote-wsl
+code --install-extension ms-kubernetes-tools.vscode-kubernetes-tools
+code --install-extension redhat.vscode-yaml
+```
+
+### 4. Verify Setup
+
+Open the VSCode **integrated terminal** (`Ctrl+`` `) — it should be a WSL2 bash shell. Confirm:
+
+```bash
+# Should show Ubuntu
+uname -a
+
+# Should work
+docker --version
+node --version
+```
+
+---
+
+## Training Phases
+
+Work through each phase in order. Each phase has a folder in `phases/` with markdown lessons and a hands-on exercise.
+
+| Phase | Topic | Status |
+|---|---|---|
+| **[Phase 0: Docker Refresher](phases/00-docker-refresher/)** | Run the app locally, build & run a Docker container | ✅ Available |
+| **[Phase 1: Foundations & Setup](phases/01-foundations-and-setup/)** | What is K8s, architecture, install tools, first cluster, deploy an app | ✅ Available |
+| Phase 2: Core Workloads | Pods, Deployments, ReplicaSets, rolling updates | 🔜 Coming Soon |
+| Phase 3: Networking & Services | ClusterIP, NodePort, LoadBalancer, Ingress | 🔜 Coming Soon |
+| Phase 4: Storage & Configuration | ConfigMaps, Secrets, Volumes, PVs, PVCs | 🔜 Coming Soon |
+| Phase 5: Observability | Logs, monitoring, probes, debugging | 🔜 Coming Soon |
+| Phase 6: Advanced Workloads | Jobs, CronJobs, DaemonSets, StatefulSets | 🔜 Coming Soon |
+| Phase 7: RBAC & Security | ServiceAccounts, Roles, NetworkPolicies | 🔜 Coming Soon |
+| Phase 8: Helm & Kustomize | Package management, environment overlays | 🔜 Coming Soon |
+| Phase 9: Scaling & Scheduling | HPA, resource limits, affinity, taints | 🔜 Coming Soon |
+| Phase 10: Production & CI/CD | Namespaces, GitOps, cluster maintenance | 🔜 Coming Soon |
+
+### Start Here: Phase 0
+
+Open the Phase 0 lesson:
+
+```
+phases/00-docker-refresher/README.md
+```
+
+Once you complete and verify Phase 0, move on to Phase 1 and work through each numbered file in order.
+
+---
+
+## Verifying Your Progress
+
+After completing a phase, run the verification command to check your work:
+
+```bash
+# Verify Phase 1
+node verify-phase.js 1
+
+# Or using npm
+npm run verify -- 1
+```
+
+The verifier checks that you've completed all the hands-on objectives for the phase. You'll see:
+
+- ✅ **Green checks** for completed objectives
+- ❌ **Red crosses** for incomplete items, with a link to the relevant lesson
+
+All checks must pass before moving to the next phase.
+
+---
+
+## Project Structure
+
+```
+kube-trainer/
+├── app/                              # Hello World app (your workload)
+│   ├── server.js                     # Node.js web server
+│   ├── package.json
+│   ├── Dockerfile
+│   └── pod.yaml                      # Kubernetes Pod manifest
+├── phases/                           # Training phases
+│   ├── 00-docker-refresher/          # Phase 0
+│   │   ├── README.md
+│   │   └── checks.json
+│   └── 01-foundations-and-setup/     # Phase 1
+│       ├── 01-what-is-kubernetes.md
+│       ├── 02-architecture-overview.md
+│       ├── 03-install-tools.md
+│       ├── 04-first-cluster.md
+│       ├── 05-kubectl-basics.md
+│       └── checks.json              # Phase 1 verification checks
+├── lib/
+│   └── verify-engine.js             # Verification engine
+├── verify-phase.js                   # CLI entry point
+├── package.json
+└── README.md                         # ← You are here
+```
+
+---
+
+## License
+
+MIT

@@ -1,0 +1,10 @@
+{
+    "name": "kube-trainer-hello-world",
+    "version": "1.0.0",
+    "description": "A minimal Hello World app used as the workload for Kubernetes training.",
+    "main": "server.js",
+    "scripts": {
+        "start": "node server.js"
+    },
+    "license": "MIT"
+}

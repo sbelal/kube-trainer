@@ -1,0 +1,70 @@
+[
+    {
+        "id": "kubectl-installed",
+        "title": "kubectl is installed",
+        "type": "command",
+        "command": "kubectl version --client --output=json",
+        "expect": {
+            "exitCode": 0
+        },
+        "fix": {
+            "file": "03-install-tools.md",
+            "section": "Installing kubectl"
+        }
+    },
+    {
+        "id": "minikube-installed",
+        "title": "minikube is installed",
+        "type": "command",
+        "command": "minikube version",
+        "expect": {
+            "exitCode": 0
+        },
+        "fix": {
+            "file": "03-install-tools.md",
+            "section": "Installing minikube"
+        }
+    },
+    {
+        "id": "cluster-running",
+        "title": "Minikube cluster is running",
+        "type": "command",
+        "command": "minikube status --format={{.Host}}",
+        "expect": {
+            "exitCode": 0,
+            "outputContains": "Running"
+        },
+        "fix": {
+            "file": "04-first-cluster.md",
+            "section": "Starting Your First Cluster"
+        }
+    },
+    {
+        "id": "kubectl-connected",
+        "title": "kubectl can connect to the cluster",
+        "type": "command",
+        "command": "kubectl cluster-info",
+        "expect": {
+            "exitCode": 0,
+            "outputContains": "Kubernetes control plane"
+        },
+        "fix": {
+            "file": "04-first-cluster.md",
+            "section": "Verifying Cluster Connectivity"
+        }
+    },
+    {
+        "id": "hello-app-running",
+        "title": "Hello World app Pod is running",
+        "type": "command",
+        "command": "kubectl get pod hello-app -o jsonpath={.status.phase}",
+        "expect": {
+            "exitCode": 0,
+            "outputContains": "Running"
+        },
+        "fix": {
+            "file": "05-kubectl-basics.md",
+            "section": "Hands-On: Deploy the Hello World App"
+        }
+    }
+]
