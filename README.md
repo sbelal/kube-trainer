@@ -9,8 +9,10 @@
 Software engineers who:
 
 - ✅ Know Docker (images, containers, Dockerfiles)
-- ✅ Have a Windows 11 machine with WSL2 (Ubuntu)
+- ✅ Have a Linux environment (or Windows 11 with WSL2)
 - 🌱 Are new to Kubernetes
+
+> 💡 **Cross-platform:** The instructions below assume a Windows 11 + WSL2 setup, but the tutorials themselves are just standard Kubernetes commands. If you're already on **Linux** or **macOS**, you can skip the WSL2 parts — just make sure you have Docker, Node.js, and kubectl installed natively.
 
 ---
 
@@ -20,14 +22,17 @@ Before you begin, ensure you have:
 
 | Tool | Purpose | Check |
 |---|---|---|
-| **Windows 11** | Host OS | You're here |
-| **WSL2 (Ubuntu)** | Linux environment for all commands | `wsl --list --verbose` in PowerShell |
+| **Windows 11 + WSL2** | Host OS (Windows users) | `wsl --list --verbose` in PowerShell |
 | **Docker** | Container runtime (inside WSL2) | `docker --version` in WSL2 terminal |
 | **Node.js 18+** | Runs the verification engine | `node --version` in WSL2 terminal |
 | **Git** | Clone this repo | `git --version` in WSL2 terminal |
 | **VSCode** | Code editor | [Download](https://code.visualstudio.com/) |
 
-> 💡 **Node.js & Docker should be installed inside WSL2**, not on Windows. If you need to install Node.js in WSL2, run:
+> 💡 **Windows users:** Node.js & Docker should be installed inside WSL2, not on Windows.
+>
+> **Linux/macOS users:** Install Docker and Node.js using your system's package manager — no WSL2 needed.
+>
+> If you need to install Node.js, run:
 > ```bash
 > curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
 > sudo apt-get install -y nodejs
