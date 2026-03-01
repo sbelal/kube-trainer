@@ -47,7 +47,7 @@ Open your WSL2 Ubuntu terminal and clone the repo:
 cd ~
 
 # Clone the repo
-git clone https://github.com/YOUR_USERNAME/kube-trainer.git
+git clone https://github.com/sbelal/kube-trainer.git
 cd kube-trainer
 ```
 
