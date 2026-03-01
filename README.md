@@ -113,8 +113,8 @@ Work through each phase in order. Each phase has a folder in `phases/` with mark
 | **[Phase 1: Foundations & Setup](phases/01-foundations-and-setup/)** | What is K8s, architecture, install tools, first cluster, deploy an app | ✅ Available |
 | **[Phase 2: Core Workloads](phases/02-core-workloads/)** | Pods, Deployments, ReplicaSets, rolling updates | ✅ Available |
 | **[Phase 3: Networking & Services](phases/03-networking-and-services/01-kubernetes-networking.md)** | ClusterIP, NodePort, LoadBalancer, Ingress | ✅ Available |
-| Phase 4: Storage & Configuration | ConfigMaps, Secrets, Volumes, PVs, PVCs | 🔜 Coming Soon |
-| Phase 5: Observability | Logs, monitoring, probes, debugging | 🔜 Coming Soon |
+| **[Phase 4: Storage & Configuration](phases/04-storage-and-configuration/01-configmaps.md)** | ConfigMaps, Secrets, Volumes, PVs, PVCs | ✅ Available |
+| **[Phase 5: Observability](phases/05-observability/01-container-logging.md)** | Logs, monitoring, probes, debugging | ✅ Available |
 | Phase 6: Advanced Workloads | Jobs, CronJobs, DaemonSets, StatefulSets | 🔜 Coming Soon |
 | Phase 7: RBAC & Security | ServiceAccounts, Roles, NetworkPolicies | 🔜 Coming Soon |
 | Phase 8: Helm & Kustomize | Package management, environment overlays | 🔜 Coming Soon |
@@ -163,7 +163,15 @@ kube-trainer/
 │   ├── package.json
 │   ├── Dockerfile
 │   ├── pod.yaml                      # Kubernetes Pod manifest
-│   └── deployment.yaml               # Kubernetes Deployment manifest
+│   ├── deployment.yaml               # Kubernetes Deployment manifest
+│   ├── clusterip-service.yaml        # ClusterIP Service manifest
+│   ├── nodeport-service.yaml         # NodePort Service manifest
+│   ├── ingress.yaml                  # Ingress manifest
+│   ├── configmap.yaml                # ConfigMap manifest
+│   ├── secret.yaml                   # Secret manifest
+│   ├── pv.yaml                       # PersistentVolume manifest
+│   ├── pvc.yaml                      # PersistentVolumeClaim manifest
+│   └── deployment-with-config.yaml   # Deployment with config, secrets & PVC
 ├── phases/                           # Training phases
 │   ├── 00-docker-refresher/          # Phase 0
 │   │   ├── README.md
@@ -174,14 +182,28 @@ kube-trainer/
 │   │   ├── 03-install-tools.md
 │   │   ├── 04-first-cluster.md
 │   │   ├── 05-kubectl-basics.md
-│   │   └── checks.json              # Phase 1 verification checks
-│   └── 02-core-workloads/           # Phase 2
-│       ├── 01-pods-deep-dive.md
-│       ├── 02-replicasets.md
-│       ├── 03-deployments.md
-│       ├── 04-rolling-updates.md
+│   │   └── checks.json
+│   ├── 02-core-workloads/           # Phase 2
+│   │   ├── 01-pods-deep-dive.md
+│   │   ├── 02-replicasets.md
+│   │   ├── 03-deployments.md
+│   │   ├── 04-rolling-updates.md
+│   │   ├── 05-hands-on-exercise.md
+│   │   └── checks.json
+│   ├── 03-networking-and-services/   # Phase 3
+│   │   ├── 01-kubernetes-networking.md
+│   │   ├── 02-clusterip-service.md
+│   │   ├── 03-nodeport-service.md
+│   │   ├── 04-loadbalancer-service.md
+│   │   ├── 05-ingress.md
+│   │   └── checks.json
+│   └── 04-storage-and-configuration/ # Phase 4
+│       ├── 01-configmaps.md
+│       ├── 02-secrets.md
+│       ├── 03-volumes-and-mounts.md
+│       ├── 04-persistent-volumes.md
 │       ├── 05-hands-on-exercise.md
-│       └── checks.json              # Phase 2 verification checks
+│       └── checks.json
 ├── lib/
 │   └── verify-engine.js             # Verification engine
 ├── verify-phase.js                   # CLI entry point

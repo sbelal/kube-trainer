@@ -1,0 +1,72 @@
+[
+    {
+        "id": "configmap-exists",
+        "title": "ConfigMap hello-app-config exists",
+        "type": "command",
+        "command": "kubectl get configmap hello-app-config -o jsonpath='{.metadata.name}'",
+        "expect": {
+            "exitCode": 0,
+            "outputContains": "hello-app-config"
+        },
+        "fix": {
+            "file": "01-configmaps.md",
+            "section": "Step 1: Create the ConfigMap"
+        }
+    },
+    {
+        "id": "secret-exists",
+        "title": "Secret hello-app-secret exists",
+        "type": "command",
+        "command": "kubectl get secret hello-app-secret -o jsonpath='{.metadata.name}'",
+        "expect": {
+            "exitCode": 0,
+            "outputContains": "hello-app-secret"
+        },
+        "fix": {
+            "file": "02-secrets.md",
+            "section": "Step 1: Create the Secret"
+        }
+    },
+    {
+        "id": "pv-exists",
+        "title": "PersistentVolume hello-app-pv exists",
+        "type": "command",
+        "command": "kubectl get pv hello-app-pv -o jsonpath='{.metadata.name}'",
+        "expect": {
+            "exitCode": 0,
+            "outputContains": "hello-app-pv"
+        },
+        "fix": {
+            "file": "04-persistent-volumes.md",
+            "section": "Step 1: Create the PersistentVolume"
+        }
+    },
+    {
+        "id": "pvc-bound",
+        "title": "PersistentVolumeClaim hello-app-pvc is Bound",
+        "type": "command",
+        "command": "kubectl get pvc hello-app-pvc -o jsonpath='{.status.phase}'",
+        "expect": {
+            "exitCode": 0,
+            "outputContains": "Bound"
+        },
+        "fix": {
+            "file": "04-persistent-volumes.md",
+            "section": "Step 3: Create the PersistentVolumeClaim"
+        }
+    },
+    {
+        "id": "configured-deployment-running",
+        "title": "hello-app-configured Deployment is running with config",
+        "type": "command",
+        "command": "kubectl get deployment hello-app-configured -o jsonpath='{.status.availableReplicas}'",
+        "expect": {
+            "exitCode": 0,
+            "outputMatches": "[1-9]"
+        },
+        "fix": {
+            "file": "05-hands-on-exercise.md",
+            "section": "Step 2: Deploy"
+        }
+    }
+]

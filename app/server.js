@@ -7,11 +7,16 @@
  * Endpoints:
  *   GET /        → HTML "Hello World" page
  *   GET /health  → JSON health check { "status": "ok" }
+ *   GET /ready   → JSON readiness check { "ready": true }
+ *   GET /startup → JSON startup check { "started": true }
  */
 
 const http = require('http');
+const os = require('os');
 
 const PORT = process.env.PORT || 3000;
+const HOSTNAME = os.hostname();
+const START_TIME = Date.now();
 
 const HTML_PAGE = `<!DOCTYPE html>
 <html lang="en">
@@ -48,28 +53,49 @@ const HTML_PAGE = `<!DOCTYPE html>
   <div class="container">
     <h1>🧊 Hello World</h1>
     <p>Your Kube-Trainer app is running!</p>
+    <p>Hostname: <code>${HOSTNAME}</code></p>
     <p>Health check: <code>GET /health</code></p>
   </div>
 </body>
 </html>`;
 
 const server = http.createServer((req, res) => {
-    if (req.url === '/health' && req.method === 'GET') {
-        res.writeHead(200, { 'Content-Type': 'application/json' });
-        res.end(JSON.stringify({ status: 'ok' }));
-        return;
-    }
+  const timestamp = new Date().toISOString();
 
-    if (req.url === '/' && req.method === 'GET') {
-        res.writeHead(200, { 'Content-Type': 'text/html' });
-        res.end(HTML_PAGE);
-        return;
-    }
+  // Log every incoming request (useful for kubectl logs demos)
+  console.log(`[${timestamp}] ${req.method} ${req.url} — from ${req.socket.remoteAddress}`);
 
-    res.writeHead(404, { 'Content-Type': 'application/json' });
-    res.end(JSON.stringify({ error: 'Not Found' }));
+  if (req.url === '/health' && req.method === 'GET') {
+    res.writeHead(200, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify({ status: 'ok', hostname: HOSTNAME }));
+    return;
+  }
+
+  if (req.url === '/ready' && req.method === 'GET') {
+    res.writeHead(200, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify({ ready: true, hostname: HOSTNAME }));
+    return;
+  }
+
+  if (req.url === '/startup' && req.method === 'GET') {
+    const uptimeMs = Date.now() - START_TIME;
+    res.writeHead(200, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify({ started: true, hostname: HOSTNAME, uptimeMs }));
+    return;
+  }
+
+  if (req.url === '/' && req.method === 'GET') {
+    res.writeHead(200, { 'Content-Type': 'text/html' });
+    res.end(HTML_PAGE);
+    return;
+  }
+
+  res.writeHead(404, { 'Content-Type': 'application/json' });
+  res.end(JSON.stringify({ error: 'Not Found' }));
 });
 
 server.listen(PORT, () => {
-    console.log(`🧊 Kube-Trainer app listening on http://localhost:${PORT}`);
+  console.log(`🧊 Kube-Trainer app listening on http://localhost:${PORT}`);
+  console.log(`   Hostname: ${HOSTNAME}`);
+  console.log(`   Endpoints: / | /health | /ready | /startup`);
 });

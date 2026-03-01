@@ -1,0 +1,72 @@
+[
+    {
+        "id": "liveness-probe-configured",
+        "title": "Deployment has a liveness probe configured",
+        "type": "command",
+        "command": "kubectl get deployment hello-app -o jsonpath='{.spec.template.spec.containers[0].livenessProbe.httpGet.path}'",
+        "expect": {
+            "exitCode": 0,
+            "outputContains": "/health"
+        },
+        "fix": {
+            "file": "02-health-probes.md",
+            "section": "Step 2: Deploy with Probes"
+        }
+    },
+    {
+        "id": "readiness-probe-configured",
+        "title": "Deployment has a readiness probe configured",
+        "type": "command",
+        "command": "kubectl get deployment hello-app -o jsonpath='{.spec.template.spec.containers[0].readinessProbe.httpGet.path}'",
+        "expect": {
+            "exitCode": 0,
+            "outputContains": "/ready"
+        },
+        "fix": {
+            "file": "02-health-probes.md",
+            "section": "Step 2: Deploy with Probes"
+        }
+    },
+    {
+        "id": "startup-probe-configured",
+        "title": "Deployment has a startup probe configured",
+        "type": "command",
+        "command": "kubectl get deployment hello-app -o jsonpath='{.spec.template.spec.containers[0].startupProbe.httpGet.path}'",
+        "expect": {
+            "exitCode": 0,
+            "outputContains": "/startup"
+        },
+        "fix": {
+            "file": "02-health-probes.md",
+            "section": "Step 2: Deploy with Probes"
+        }
+    },
+    {
+        "id": "metrics-server-running",
+        "title": "Metrics Server is running",
+        "type": "command",
+        "command": "kubectl get pods -n kube-system -l k8s-app=metrics-server -o jsonpath='{.items[0].status.phase}'",
+        "expect": {
+            "exitCode": 0,
+            "outputContains": "Running"
+        },
+        "fix": {
+            "file": "03-resource-monitoring.md",
+            "section": "Step 1: Enable Metrics Server"
+        }
+    },
+    {
+        "id": "resource-requests-configured",
+        "title": "Deployment has resource requests configured",
+        "type": "command",
+        "command": "kubectl get deployment hello-app -o jsonpath='{.spec.template.spec.containers[0].resources.requests.cpu}'",
+        "expect": {
+            "exitCode": 0,
+            "outputMatches": "[0-9]+m"
+        },
+        "fix": {
+            "file": "05-hands-on-exercise.md",
+            "section": "Part 1: Deploy with Probes"
+        }
+    }
+]

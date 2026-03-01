@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: hello-app-config
+data:
+  APP_TITLE: "Kube-Trainer (Configured!)"
+  APP_BACKGROUND: "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)"
