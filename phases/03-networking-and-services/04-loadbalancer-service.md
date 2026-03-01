@@ -13,25 +13,25 @@ When you create a LoadBalancer Service in a cloud environment, Kubernetes:
 3. Provisions a **cloud load balancer** that routes traffic to the NodePort
 
 ```
-┌─────────────────────────────────────────────────────────┐
+┌──────────────────────────────────────────────────────────┐
 │                                                          │
 │   The Internet                                           │
 │       │                                                  │
 │       ▼                                                  │
 │   Cloud Load Balancer  (e.g., AWS ELB)                   │
-│   52.x.x.x:80                                           │
+│   52.x.x.x:80                                            │
 │       │                                                  │
 │       ▼                                                  │
-│   ┌──────────── Cluster ────────────┐                    │
-│   │   NodePort (auto-assigned)       │                    │
-│   │       │                          │                    │
-│   │       ▼                          │                    │
-│   │   Service:80  ──┬──► Pod 1      │                    │
-│   │                  ├──► Pod 2      │                    │
-│   │                  └──► Pod 3      │                    │
-│   └──────────────────────────────────┘                    │
+│   ┌──────────── Cluster ─────────────┐                   │
+│   │   NodePort (auto-assigned)       │                   │
+│   │       │                          │                   │
+│   │       ▼                          │                   │
+│   │   Service:80  ──┬──► Pod 1       │                   │
+│   │                  ├──► Pod 2      │                   │
+│   │                  └──► Pod 3      │                   │
+│   └──────────────────────────────────┘                   │
 │                                                          │
-└─────────────────────────────────────────────────────────┘
+└──────────────────────────────────────────────────────────┘
 ```
 
 > 💡 **Key insight:** LoadBalancer builds on top of NodePort, which builds on top of ClusterIP. Each type adds a new layer of accessibility.
@@ -85,9 +85,9 @@ Here's the decision framework:
 
 ```
                   ┌─────────────────┐
-                  │  Do other Pods   │
-                  │  need to reach   │
-                  │  this service?   │
+                  │  Do other Pods  │
+                  │  need to reach  │
+                  │  this service?  │
                   └────┬────────┬───┘
                        │        │
                       Yes       No
@@ -98,17 +98,17 @@ Here's the decision framework:
                               a Service)
 
                   ┌───────────────────┐
-                  │ Do EXTERNAL users  │
-                  │ need to reach it?  │
+                  │ Do EXTERNAL users │
+                  │ need to reach it? │
                   └───┬────────────┬──┘
                       │            │
                      Yes           No
                       │            │
                       ▼            ▼
-              ┌───────────┐   ClusterIP
+              ┌────────────┐   ClusterIP
               │ Production │   is enough
               │ or Dev?    │
-              └──┬─────┬──┘
+              └──┬─────┬───┘
                  │     │
                Prod   Dev
                  │     │

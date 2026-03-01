@@ -13,15 +13,15 @@ When you create a ClusterIP Service:
 3. It **load-balances** traffic across all matching Pods
 
 ```
-┌──────────────────────────────────────────────────┐
+┌───────────────────────────────────────────────────┐
 │                  Kubernetes Cluster               │
 │                                                   │
-│   Pod A ──► hello-app-clusterip:80 ──┬──► Pod 1  │
-│                (ClusterIP)           ├──► Pod 2  │
-│   Pod B ──► 10.96.x.x:80 ──────────┘            │
+│   Pod A ──► hello-app-clusterip:80 ──┬──► Pod 1   │
+│                (ClusterIP)           ├──► Pod 2   │
+│   Pod B ──► 10.96.x.x:80 ──────────┘              │
 │                                                   │
-│   ❌ Not accessible from outside the cluster      │
-└──────────────────────────────────────────────────┘
+│   ❌ Not accessible from outside the cluster     │
+└───────────────────────────────────────────────────┘
 ```
 
 > 💡 **When to use ClusterIP:** For internal services that only need to be reached by other Pods. Examples: a database, a cache, an internal API.
