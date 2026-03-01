@@ -81,11 +81,13 @@ cd app/
 docker build -t kube-trainer-app:latest .
 ```
 
-You should see output ending with:
+You should see output similar to this:
 
 ```
-Successfully built xxxxxxxxxx
-Successfully tagged kube-trainer-app:latest
+[+] Building 1.4s (9/9) FINISHED                                  docker:default
+...
+ => => naming to docker.io/library/kube-trainer-app:latest                  0.0s
+ => => unpacking to docker.io/library/kube-trainer-app:latest               0.0s
 ```
 
 ### Verify the Image Exists
