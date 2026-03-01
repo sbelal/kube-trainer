@@ -18,7 +18,7 @@ When you create a ClusterIP Service:
 │                                                   │
 │   Pod A ──► hello-app-clusterip:80 ──┬──► Pod 1   │
 │                (ClusterIP)           ├──► Pod 2   │
-│   Pod B ──► 10.96.x.x:80 ──────────┘              │
+│   Pod B ──► 10.96.x.x:80 ────────────┘            │
 │                                                   │
 │   ❌ Not accessible from outside the cluster     │
 └───────────────────────────────────────────────────┘
