@@ -79,6 +79,8 @@ eval $(minikube docker-env)
 
 > 💡 **What does this do?** It sets environment variables (`DOCKER_HOST`, `DOCKER_TLS_VERIFY`, etc.) so that `docker build` talks to minikube's Docker instead of your local Docker. This means images you build are immediately available to Kubernetes without pushing to a registry.
 
+> ⚠️ **This is temporary!** The `eval $(minikube docker-env)` command only affects your **current terminal session**. If you open a new terminal or restart your shell, you'll need to run it again. If you build an image without running this command first, the image will be stored in your local Docker — not minikube's — and Kubernetes won't be able to find it.
+
 Now build the image:
 
 ```bash
