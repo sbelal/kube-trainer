@@ -1,0 +1,13 @@
+replicaCount: 2
+
+image:
+  repository: kube-trainer-app
+  tag: latest
+  pullPolicy: Never
+
+service:
+  type: ClusterIP
+  port: 80
+  targetPort: 3000
+
+containerPort: 3000

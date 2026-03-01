@@ -1,0 +1,85 @@
+[
+    {
+        "id": "helm-installed",
+        "title": "Helm CLI is installed",
+        "type": "command",
+        "command": "helm version --short",
+        "expect": {
+            "exitCode": 0
+        },
+        "fix": {
+            "file": "02-installing-and-using-helm.md",
+            "section": "Step 1: Install Helm"
+        }
+    },
+    {
+        "id": "helm-chart-exists",
+        "title": "Helm chart directory exists with Chart.yaml",
+        "type": "command",
+        "command": "cat app/hello-app-chart/Chart.yaml | grep 'name: hello-app'",
+        "expect": {
+            "exitCode": 0,
+            "outputContains": "hello-app"
+        },
+        "fix": {
+            "file": "03-creating-a-helm-chart.md",
+            "section": "Step 2: Explore the Chart"
+        }
+    },
+    {
+        "id": "helm-release-exists",
+        "title": "hello-app Helm release exists",
+        "type": "command",
+        "command": "helm list -q",
+        "expect": {
+            "exitCode": 0,
+            "outputContains": "hello-app-release"
+        },
+        "fix": {
+            "file": "03-creating-a-helm-chart.md",
+            "section": "Step 5: Install Your Chart"
+        }
+    },
+    {
+        "id": "helm-pods-running",
+        "title": "Helm release Pods are running",
+        "type": "command",
+        "command": "kubectl get pods -l app.kubernetes.io/instance=hello-app-release -o jsonpath='{.items[0].status.phase}'",
+        "expect": {
+            "exitCode": 0,
+            "outputContains": "Running"
+        },
+        "fix": {
+            "file": "06-hands-on-exercise.md",
+            "section": "Part 1: Deploy with Helm"
+        }
+    },
+    {
+        "id": "kustomize-base-exists",
+        "title": "Kustomize base directory exists",
+        "type": "command",
+        "command": "cat app/kustomize/base/kustomization.yaml | grep 'kind: Kustomization'",
+        "expect": {
+            "exitCode": 0,
+            "outputContains": "Kustomization"
+        },
+        "fix": {
+            "file": "04-introduction-to-kustomize.md",
+            "section": "Step 1: Understand the Base"
+        }
+    },
+    {
+        "id": "kustomize-dev-deployed",
+        "title": "Dev overlay deployed (dev-hello-app exists)",
+        "type": "command",
+        "command": "kubectl get deployment dev-hello-app -o jsonpath='{.metadata.name}'",
+        "expect": {
+            "exitCode": 0,
+            "outputContains": "dev-hello-app"
+        },
+        "fix": {
+            "file": "05-kustomize-overlays.md",
+            "section": "Step 5: Deploy the Dev Overlay"
+        }
+    }
+]

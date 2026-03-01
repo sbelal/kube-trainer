@@ -1,0 +1,72 @@
+[
+    {
+        "id": "deployment-has-resources",
+        "title": "Deployment has resource requests configured",
+        "type": "command",
+        "command": "kubectl get deployment hello-app -o jsonpath='{.spec.template.spec.containers[0].resources.requests.cpu}'",
+        "expect": {
+            "exitCode": 0,
+            "outputContains": "50m"
+        },
+        "fix": {
+            "file": "01-resource-requests-and-limits.md",
+            "section": "Step 1: Create a Resource-Constrained Deployment"
+        }
+    },
+    {
+        "id": "hpa-exists",
+        "title": "HPA hello-app-hpa exists",
+        "type": "command",
+        "command": "kubectl get hpa hello-app-hpa -o jsonpath='{.metadata.name}'",
+        "expect": {
+            "exitCode": 0,
+            "outputContains": "hello-app-hpa"
+        },
+        "fix": {
+            "file": "02-horizontal-pod-autoscaler.md",
+            "section": "Step 2: Apply the HPA"
+        }
+    },
+    {
+        "id": "hpa-targets-deployment",
+        "title": "HPA targets the hello-app Deployment",
+        "type": "command",
+        "command": "kubectl get hpa hello-app-hpa -o jsonpath='{.spec.scaleTargetRef.name}'",
+        "expect": {
+            "exitCode": 0,
+            "outputContains": "hello-app"
+        },
+        "fix": {
+            "file": "02-horizontal-pod-autoscaler.md",
+            "section": "Step 1: Create the HPA Manifest"
+        }
+    },
+    {
+        "id": "node-has-label",
+        "title": "Node has the team=hello label",
+        "type": "command",
+        "command": "kubectl get nodes minikube -o jsonpath='{.metadata.labels.team}'",
+        "expect": {
+            "exitCode": 0,
+            "outputContains": "hello"
+        },
+        "fix": {
+            "file": "03-node-affinity.md",
+            "section": "Step 2: Add a Custom Label"
+        }
+    },
+    {
+        "id": "node-untainted",
+        "title": "Node is untainted (clean state)",
+        "type": "command",
+        "command": "kubectl describe node minikube | grep 'Taints:' | grep '<none>'",
+        "expect": {
+            "exitCode": 0,
+            "outputContains": "<none>"
+        },
+        "fix": {
+            "file": "04-taints-and-tolerations.md",
+            "section": "Step 6: Clean Up Test Pods"
+        }
+    }
+]

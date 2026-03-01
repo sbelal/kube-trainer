@@ -117,8 +117,8 @@ Work through each phase in order. Each phase has a folder in `phases/` with mark
 | **[Phase 5: Observability](phases/05-observability/01-container-logging.md)** | Logs, monitoring, probes, debugging | ✅ Available |
 | **[Phase 6: Advanced Workloads](phases/06-advanced-workloads/01-jobs.md)** | Jobs, CronJobs, DaemonSets, StatefulSets | ✅ Available |
 | **[Phase 7: RBAC & Security](phases/07-rbac-and-security/01-service-accounts.md)** | ServiceAccounts, Roles, NetworkPolicies | ✅ Available |
-| Phase 8: Helm & Kustomize | Package management, environment overlays | 🔜 Coming Soon |
-| Phase 9: Scaling & Scheduling | HPA, resource limits, affinity, taints | 🔜 Coming Soon |
+| **[Phase 8: Helm & Kustomize](phases/08-helm-and-kustomize/01-introduction-to-helm.md)** | Package management, environment overlays | ✅ Available |
+| **[Phase 9: Scaling & Scheduling](phases/09-scaling-and-scheduling/01-resource-requests-and-limits.md)** | HPA, resource limits, affinity, taints | ✅ Available |
 | Phase 10: Production & CI/CD | Namespaces, GitOps, cluster maintenance | 🔜 Coming Soon |
 
 ### Start Here: Phase 0
@@ -179,7 +179,25 @@ kube-trainer/
 │   ├── serviceaccount.yaml           # ServiceAccount manifest
 │   ├── role.yaml                     # RBAC Role manifest
 │   ├── rolebinding.yaml              # RBAC RoleBinding manifest
-│   └── networkpolicy.yaml            # NetworkPolicy manifest
+│   ├── networkpolicy.yaml            # NetworkPolicy manifest
+│   ├── deployment-with-resources.yaml # Deployment with resource requests/limits
+│   ├── hpa.yaml                      # HorizontalPodAutoscaler manifest
+│   ├── hello-app-chart/              # Helm chart for hello-app
+│   │   ├── Chart.yaml
+│   │   ├── values.yaml
+│   │   └── templates/
+│   │       ├── _helpers.tpl
+│   │       ├── deployment.yaml
+│   │       └── service.yaml
+│   └── kustomize/                    # Kustomize configuration
+│       ├── base/
+│       │   ├── kustomization.yaml
+│       │   ├── deployment.yaml
+│       │   └── service.yaml
+│       └── overlays/
+│           ├── dev/kustomization.yaml
+│           ├── staging/kustomization.yaml
+│           └── prod/kustomization.yaml
 ├── phases/                           # Training phases
 │   ├── 00-docker-refresher/          # Phase 0
 │   │   ├── README.md
@@ -226,11 +244,26 @@ kube-trainer/
 │   │   ├── 04-statefulsets.md
 │   │   ├── 05-hands-on-exercise.md
 │   │   └── checks.json
-│   └── 07-rbac-and-security/        # Phase 7
-│       ├── 01-service-accounts.md
-│       ├── 02-roles-and-rolebindings.md
-│       ├── 03-network-policies.md
-│       ├── 04-security-best-practices.md
+│   ├── 07-rbac-and-security/        # Phase 7
+│   │   ├── 01-service-accounts.md
+│   │   ├── 02-roles-and-rolebindings.md
+│   │   ├── 03-network-policies.md
+│   │   ├── 04-security-best-practices.md
+│   │   ├── 05-hands-on-exercise.md
+│   │   └── checks.json
+│   ├── 08-helm-and-kustomize/       # Phase 8
+│   │   ├── 01-introduction-to-helm.md
+│   │   ├── 02-installing-and-using-helm.md
+│   │   ├── 03-creating-a-helm-chart.md
+│   │   ├── 04-introduction-to-kustomize.md
+│   │   ├── 05-kustomize-overlays.md
+│   │   ├── 06-hands-on-exercise.md
+│   │   └── checks.json
+│   └── 09-scaling-and-scheduling/   # Phase 9
+│       ├── 01-resource-requests-and-limits.md
+│       ├── 02-horizontal-pod-autoscaler.md
+│       ├── 03-node-affinity.md
+│       ├── 04-taints-and-tolerations.md
 │       ├── 05-hands-on-exercise.md
 │       └── checks.json
 ├── lib/

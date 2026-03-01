@@ -234,4 +234,4 @@ Together, these implement the **principle of least privilege**: give each worklo
 
 ---
 
-**Next up:** [Phase 8: Helm & Kustomize (Coming Soon) →](../../README.md)
+**Next up:** [Phase 8: Helm & Kustomize →](../08-helm-and-kustomize/01-introduction-to-helm.md)
