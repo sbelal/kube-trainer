@@ -212,18 +212,12 @@ kubectl rollout undo deployment/hello-app --to-revision=2
 
 ## Recording Change Causes
 
-You can annotate deployments to record why a change was made:
+You can annotate deployments to record why a change was made. After triggering an update, set the `kubernetes.io/change-cause` annotation:
 
 ```bash
-# Update with a recorded reason
-kubectl set image deployment/hello-app hello-app=kube-trainer-app:v2 --record
+# After updating to v2
+kubectl annotate deployment/hello-app kubernetes.io/change-cause="Updated to v2" --overwrite
 ```
-
-> ⚠️ **Note:** The `--record` flag is deprecated in newer versions of kubectl. The recommended alternative is to annotate the change cause manually:
->
-> ```bash
-> kubectl annotate deployment/hello-app kubernetes.io/change-cause="Updated to v2"
-> ```
 
 Now `kubectl rollout history` will show the cause:
 
@@ -232,6 +226,8 @@ REVISION  CHANGE-CAUSE
 1         <none>
 2         Updated to v2
 ```
+
+> 💡 **Tip:** Annotate right after each update so your rollout history stays meaningful. This makes it easy to know *why* each revision exists when deciding which version to roll back to.
 
 ---
 
