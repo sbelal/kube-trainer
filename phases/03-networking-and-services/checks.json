@@ -1,0 +1,72 @@
+[
+    {
+        "id": "deployment-running",
+        "title": "hello-app Deployment exists and is available",
+        "type": "command",
+        "command": "kubectl get deployment hello-app -o jsonpath={.status.availableReplicas}",
+        "expect": {
+            "exitCode": 0,
+            "outputMatches": "[1-9]"
+        },
+        "fix": {
+            "file": "02-clusterip-service.md",
+            "section": "Step 1: Deploy the App with a Deployment"
+        }
+    },
+    {
+        "id": "clusterip-service-exists",
+        "title": "ClusterIP Service for hello-app exists",
+        "type": "command",
+        "command": "kubectl get service hello-app-clusterip -o jsonpath={.spec.type}",
+        "expect": {
+            "exitCode": 0,
+            "outputContains": "ClusterIP"
+        },
+        "fix": {
+            "file": "02-clusterip-service.md",
+            "section": "Step 2: Create the ClusterIP Service"
+        }
+    },
+    {
+        "id": "nodeport-service-exists",
+        "title": "NodePort Service for hello-app exists",
+        "type": "command",
+        "command": "kubectl get service hello-app-nodeport -o jsonpath={.spec.type}",
+        "expect": {
+            "exitCode": 0,
+            "outputContains": "NodePort"
+        },
+        "fix": {
+            "file": "03-nodeport-service.md",
+            "section": "Step 1: Create the NodePort Service"
+        }
+    },
+    {
+        "id": "ingress-controller-enabled",
+        "title": "NGINX Ingress controller is running",
+        "type": "command",
+        "command": "kubectl get pods -n ingress-nginx -l app.kubernetes.io/component=controller -o jsonpath={.items[0].status.phase}",
+        "expect": {
+            "exitCode": 0,
+            "outputContains": "Running"
+        },
+        "fix": {
+            "file": "05-ingress.md",
+            "section": "Step 1: Enable the Ingress Controller"
+        }
+    },
+    {
+        "id": "ingress-exists",
+        "title": "Ingress resource for hello-app exists",
+        "type": "command",
+        "command": "kubectl get ingress hello-app-ingress -o jsonpath={.spec.rules[0].host}",
+        "expect": {
+            "exitCode": 0,
+            "outputContains": "hello-app.local"
+        },
+        "fix": {
+            "file": "05-ingress.md",
+            "section": "Step 2: Create the Ingress Resource"
+        }
+    }
+]

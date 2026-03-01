@@ -1,0 +1,58 @@
+[
+    {
+        "id": "deployment-exists",
+        "title": "hello-app Deployment exists",
+        "type": "command",
+        "command": "kubectl get deployment hello-app -o jsonpath='{.metadata.name}'",
+        "expect": {
+            "exitCode": 0,
+            "outputContains": "hello-app"
+        },
+        "fix": {
+            "file": "03-deployments.md",
+            "section": "Hands-On: Create a Deployment"
+        }
+    },
+    {
+        "id": "deployment-replicas",
+        "title": "Deployment has 3 ready replicas",
+        "type": "command",
+        "command": "kubectl get deployment hello-app -o jsonpath='{.status.readyReplicas}'",
+        "expect": {
+            "exitCode": 0,
+            "outputContains": "3"
+        },
+        "fix": {
+            "file": "05-hands-on-exercise.md",
+            "section": "Step 3: Deploy with a Deployment"
+        }
+    },
+    {
+        "id": "pods-running",
+        "title": "Pods with label app=hello-app are running",
+        "type": "command",
+        "command": "kubectl get pods -l app=hello-app --field-selector=status.phase=Running -o jsonpath='{.items[*].metadata.name}'",
+        "expect": {
+            "exitCode": 0,
+            "outputMatches": "hello-app"
+        },
+        "fix": {
+            "file": "05-hands-on-exercise.md",
+            "section": "Step 4: Verify Pods Are Running"
+        }
+    },
+    {
+        "id": "rollout-history",
+        "title": "Deployment has rollout history",
+        "type": "command",
+        "command": "kubectl rollout history deployment/hello-app",
+        "expect": {
+            "exitCode": 0,
+            "outputContains": "REVISION"
+        },
+        "fix": {
+            "file": "04-rolling-updates.md",
+            "section": "Hands-On: Perform a Rolling Update"
+        }
+    }
+]

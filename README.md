@@ -111,8 +111,8 @@ Work through each phase in order. Each phase has a folder in `phases/` with mark
 |---|---|---|
 | **[Phase 0: Docker Refresher](phases/00-docker-refresher/)** | Run the app locally, build & run a Docker container | ✅ Available |
 | **[Phase 1: Foundations & Setup](phases/01-foundations-and-setup/)** | What is K8s, architecture, install tools, first cluster, deploy an app | ✅ Available |
-| Phase 2: Core Workloads | Pods, Deployments, ReplicaSets, rolling updates | 🔜 Coming Soon |
-| Phase 3: Networking & Services | ClusterIP, NodePort, LoadBalancer, Ingress | 🔜 Coming Soon |
+| **[Phase 2: Core Workloads](phases/02-core-workloads/)** | Pods, Deployments, ReplicaSets, rolling updates | ✅ Available |
+| **[Phase 3: Networking & Services](phases/03-networking-and-services/01-kubernetes-networking.md)** | ClusterIP, NodePort, LoadBalancer, Ingress | ✅ Available |
 | Phase 4: Storage & Configuration | ConfigMaps, Secrets, Volumes, PVs, PVCs | 🔜 Coming Soon |
 | Phase 5: Observability | Logs, monitoring, probes, debugging | 🔜 Coming Soon |
 | Phase 6: Advanced Workloads | Jobs, CronJobs, DaemonSets, StatefulSets | 🔜 Coming Soon |
@@ -162,18 +162,26 @@ kube-trainer/
 │   ├── server.js                     # Node.js web server
 │   ├── package.json
 │   ├── Dockerfile
-│   └── pod.yaml                      # Kubernetes Pod manifest
+│   ├── pod.yaml                      # Kubernetes Pod manifest
+│   └── deployment.yaml               # Kubernetes Deployment manifest
 ├── phases/                           # Training phases
 │   ├── 00-docker-refresher/          # Phase 0
 │   │   ├── README.md
 │   │   └── checks.json
-│   └── 01-foundations-and-setup/     # Phase 1
-│       ├── 01-what-is-kubernetes.md
-│       ├── 02-architecture-overview.md
-│       ├── 03-install-tools.md
-│       ├── 04-first-cluster.md
-│       ├── 05-kubectl-basics.md
-│       └── checks.json              # Phase 1 verification checks
+│   ├── 01-foundations-and-setup/     # Phase 1
+│   │   ├── 01-what-is-kubernetes.md
+│   │   ├── 02-architecture-overview.md
+│   │   ├── 03-install-tools.md
+│   │   ├── 04-first-cluster.md
+│   │   ├── 05-kubectl-basics.md
+│   │   └── checks.json              # Phase 1 verification checks
+│   └── 02-core-workloads/           # Phase 2
+│       ├── 01-pods-deep-dive.md
+│       ├── 02-replicasets.md
+│       ├── 03-deployments.md
+│       ├── 04-rolling-updates.md
+│       ├── 05-hands-on-exercise.md
+│       └── checks.json              # Phase 2 verification checks
 ├── lib/
 │   └── verify-engine.js             # Verification engine
 ├── verify-phase.js                   # CLI entry point
