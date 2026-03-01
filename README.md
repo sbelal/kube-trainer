@@ -10,7 +10,7 @@ Software engineers who:
 
 - ✅ Know Docker (images, containers, Dockerfiles)
 - ✅ Have a Windows 11 machine with WSL2 (Ubuntu)
-- ❌ Are new to Kubernetes
+- 🌱 Are new to Kubernetes
 
 ---
 
