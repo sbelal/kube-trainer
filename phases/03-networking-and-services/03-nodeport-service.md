@@ -110,18 +110,39 @@ Notice `80:30080/TCP` — this means port 80 internally, port 30080 externally.
 
 ## Step 3: Access from Outside the Cluster
 
-With minikube, you can access the NodePort Service using `minikube service`:
+With minikube using the Docker driver (the default on Linux), the node IP isn't directly accessible from your host. You need `minikube service` to create a tunnel — and it **must stay running** in the foreground.
+
+### Open Two Terminals
+
+**Terminal 1** — Start the tunnel (keep this running):
 
 ```bash
-# This opens the service URL in your default browser
-minikube service hello-app-nodeport --url
+minikube service hello-app-nodeport
 ```
 
-This prints a URL like `http://192.168.49.2:30080`. Copy it and test:
+This will output something like:
+
+```
+|-----------|--------------------|-----------|-----------------------------|
+| NAMESPACE |        NAME        | TARGET PORT |            URL            |
+|-----------|--------------------|-----------|-----------------------------|
+| default   | hello-app-nodeport |        80 | http://192.168.49.2:30080   |
+|-----------|--------------------|-----------|-----------------------------|
+🏃  Starting tunnel for service hello-app-nodeport.
+|-----------|--------------------|-----------|-----------------------|
+| NAMESPACE |        NAME        | TARGET PORT |          URL          |
+|-----------|--------------------|-----------|-----------------------|
+| default   | hello-app-nodeport |           | http://127.0.0.1:XXXXX|
+|-----------|--------------------|-----------|-----------------------|
+```
+
+> ⚠️ **Keep this terminal open!** The tunnel only works while `minikube service` is running. If you close it, the URL stops working.
+
+**Terminal 2** — Test the app using the `http://127.0.0.1:XXXXX` URL from the tunnel output:
 
 ```bash
-# Use the URL from the previous command
-curl $(minikube service hello-app-nodeport --url)
+# Replace XXXXX with the port from the tunnel output above
+curl http://127.0.0.1:XXXXX
 ```
 
 You should see the Hello World HTML page!
@@ -129,7 +150,7 @@ You should see the Hello World HTML page!
 Test the health endpoint too:
 
 ```bash
-curl $(minikube service hello-app-nodeport --url)/health
+curl http://127.0.0.1:XXXXX/health
 ```
 
 Expected:
@@ -138,7 +159,9 @@ Expected:
 {"status":"ok"}
 ```
 
-> 💡 **Why `minikube service`?** In a real cluster, you'd access `<any-node-ip>:30080`. But minikube runs inside a VM/container, so its node IP isn't directly accessible from your host. `minikube service` handles the tunneling for you.
+When you're done testing, press `Ctrl+C` in Terminal 1 to stop the tunnel.
+
+> 💡 **Why the tunnel?** minikube's Docker driver runs the cluster inside a container. The node IP (e.g., `192.168.49.2`) lives in Docker's internal network, which your host can't reach directly. `minikube service` creates a tunnel from `127.0.0.1` on your host to the NodePort inside the cluster.
 
 ---
 
