@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: hello-app-daemon
+  labels:
+    app: hello-app-daemon
+spec:
+  selector:
+    matchLabels:
+      app: hello-app-daemon
+  template:
+    metadata:
+      labels:
+        app: hello-app-daemon
+    spec:
+      containers:
+      - name: hello-app
+        image: kube-trainer-app:latest
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 3000
+        resources:
+          requests:
+            cpu: 25m
+            memory: 32Mi
+          limits:
+            cpu: 100m
+            memory: 64Mi

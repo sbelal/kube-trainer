@@ -1,0 +1,72 @@
+[
+    {
+        "id": "serviceaccount-exists",
+        "title": "ServiceAccount hello-app-sa exists",
+        "type": "command",
+        "command": "kubectl get sa hello-app-sa -o jsonpath='{.metadata.name}'",
+        "expect": {
+            "exitCode": 0,
+            "outputContains": "hello-app-sa"
+        },
+        "fix": {
+            "file": "01-service-accounts.md",
+            "section": "Step 2: Create a Custom ServiceAccount"
+        }
+    },
+    {
+        "id": "role-exists",
+        "title": "Role hello-app-role exists",
+        "type": "command",
+        "command": "kubectl get role hello-app-role -o jsonpath='{.metadata.name}'",
+        "expect": {
+            "exitCode": 0,
+            "outputContains": "hello-app-role"
+        },
+        "fix": {
+            "file": "02-roles-and-rolebindings.md",
+            "section": "Step 1: Create a Role"
+        }
+    },
+    {
+        "id": "rolebinding-exists",
+        "title": "RoleBinding hello-app-rolebinding exists",
+        "type": "command",
+        "command": "kubectl get rolebinding hello-app-rolebinding -o jsonpath='{.metadata.name}'",
+        "expect": {
+            "exitCode": 0,
+            "outputContains": "hello-app-rolebinding"
+        },
+        "fix": {
+            "file": "02-roles-and-rolebindings.md",
+            "section": "Step 2: Create a RoleBinding"
+        }
+    },
+    {
+        "id": "rbac-can-get-pods",
+        "title": "ServiceAccount can get pods (RBAC is working)",
+        "type": "command",
+        "command": "kubectl auth can-i get pods --as=system:serviceaccount:default:hello-app-sa",
+        "expect": {
+            "exitCode": 0,
+            "outputContains": "yes"
+        },
+        "fix": {
+            "file": "02-roles-and-rolebindings.md",
+            "section": "Step 3: Test Permissions with kubectl auth can-i"
+        }
+    },
+    {
+        "id": "networkpolicy-exists",
+        "title": "NetworkPolicy hello-app-netpol exists",
+        "type": "command",
+        "command": "kubectl get networkpolicy hello-app-netpol -o jsonpath='{.metadata.name}'",
+        "expect": {
+            "exitCode": 0,
+            "outputContains": "hello-app-netpol"
+        },
+        "fix": {
+            "file": "03-network-policies.md",
+            "section": "Step 2: Create a NetworkPolicy"
+        }
+    }
+]

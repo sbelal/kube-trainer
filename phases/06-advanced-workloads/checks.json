@@ -1,0 +1,72 @@
+[
+    {
+        "id": "job-completed",
+        "title": "Job hello-app-job completed successfully",
+        "type": "command",
+        "command": "kubectl get job hello-app-job -o jsonpath='{.status.succeeded}'",
+        "expect": {
+            "exitCode": 0,
+            "outputMatches": "[1-9]"
+        },
+        "fix": {
+            "file": "01-jobs.md",
+            "section": "Step 2: Create the Job"
+        }
+    },
+    {
+        "id": "cronjob-exists",
+        "title": "CronJob hello-app-cronjob exists",
+        "type": "command",
+        "command": "kubectl get cronjob hello-app-cronjob -o jsonpath='{.metadata.name}'",
+        "expect": {
+            "exitCode": 0,
+            "outputContains": "hello-app-cronjob"
+        },
+        "fix": {
+            "file": "02-cronjobs.md",
+            "section": "Step 2: Create the CronJob"
+        }
+    },
+    {
+        "id": "daemonset-ready",
+        "title": "DaemonSet hello-app-daemon has desired pods scheduled",
+        "type": "command",
+        "command": "kubectl get daemonset hello-app-daemon -o jsonpath='{.status.numberReady}'",
+        "expect": {
+            "exitCode": 0,
+            "outputMatches": "[1-9]"
+        },
+        "fix": {
+            "file": "03-daemonsets.md",
+            "section": "Step 2: Deploy the DaemonSet"
+        }
+    },
+    {
+        "id": "statefulset-ready",
+        "title": "StatefulSet hello-app-stateful has ready replicas",
+        "type": "command",
+        "command": "kubectl get statefulset hello-app-stateful -o jsonpath='{.status.readyReplicas}'",
+        "expect": {
+            "exitCode": 0,
+            "outputMatches": "[1-9]"
+        },
+        "fix": {
+            "file": "04-statefulsets.md",
+            "section": "Step 2: Deploy the StatefulSet"
+        }
+    },
+    {
+        "id": "headless-service-exists",
+        "title": "Headless Service hello-app-headless exists",
+        "type": "command",
+        "command": "kubectl get svc hello-app-headless -o jsonpath='{.spec.clusterIP}'",
+        "expect": {
+            "exitCode": 0,
+            "outputContains": "None"
+        },
+        "fix": {
+            "file": "04-statefulsets.md",
+            "section": "Step 1: The Headless Service Requirement"
+        }
+    }
+]

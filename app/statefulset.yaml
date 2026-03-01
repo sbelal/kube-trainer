@@ -1,0 +1,49 @@
+# Headless Service — required for StatefulSet DNS
+apiVersion: v1
+kind: Service
+metadata:
+  name: hello-app-headless
+  labels:
+    app: hello-app-stateful
+spec:
+  clusterIP: None
+  selector:
+    app: hello-app-stateful
+  ports:
+  - port: 3000
+    targetPort: 3000
+    name: http
+---
+# StatefulSet
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: hello-app-stateful
+spec:
+  serviceName: hello-app-headless
+  replicas: 2
+  selector:
+    matchLabels:
+      app: hello-app-stateful
+  template:
+    metadata:
+      labels:
+        app: hello-app-stateful
+    spec:
+      containers:
+      - name: hello-app
+        image: kube-trainer-app:latest
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 3000
+        volumeMounts:
+        - name: data
+          mountPath: /app/data
+  volumeClaimTemplates:
+  - metadata:
+      name: data
+    spec:
+      accessModes: ["ReadWriteOnce"]
+      resources:
+        requests:
+          storage: 50Mi

@@ -1,0 +1,28 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: hello-app-cronjob
+spec:
+  schedule: "*/1 * * * *"
+  concurrencyPolicy: Forbid
+  successfulJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 1
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          labels:
+            app: hello-app-cronjob
+        spec:
+          restartPolicy: Never
+          containers:
+          - name: hello-cron
+            image: busybox:1.36
+            command: ["sh", "-c"]
+            args:
+            - |
+              echo "=== CronJob run at $(date) ==="
+              echo "Hostname: $(hostname)"
+              echo "Performing scheduled task..."
+              sleep 3
+              echo "=== Scheduled task completed ==="
