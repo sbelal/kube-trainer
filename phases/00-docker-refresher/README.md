@@ -173,4 +173,8 @@ Everything Kubernetes does revolves around **container images**. When you tell K
 node verify-phase.js 0
 ```
 
-All checks should pass ✅. Then move on to **[Phase 1: Foundations & Setup →](../01-foundations-and-setup/01-what-is-kubernetes.md)**
+All checks should pass ✅.
+
+---
+
+**Next up:** [What is Kubernetes? →](../01-foundations-and-setup/01-what-is-kubernetes.md)

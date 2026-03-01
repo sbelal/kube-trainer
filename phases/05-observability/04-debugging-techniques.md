@@ -290,4 +290,4 @@ kubectl debug -it <pod-name> --image=busybox -- sh
 
 ---
 
-**Next up:** [Hands-On Exercise →](./05-hands-on-exercise.md)
+**Next up:** [Hands-On Exercise: Observability →](./05-hands-on-exercise.md)

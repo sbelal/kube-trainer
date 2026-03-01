@@ -197,4 +197,8 @@ These workloads, combined with Deployments from Phase 2, cover the vast majority
 
 ---
 
-🎉 **Phase 6 Complete!** You now understand all the core Kubernetes workload types. Next up is Phase 7: RBAC & Security (ServiceAccounts, Roles, NetworkPolicies).
+🎉 **Phase 6 Complete!** You now understand all the core Kubernetes workload types.
+
+---
+
+**Next up:** [Service Accounts →](../07-rbac-and-security/01-service-accounts.md)

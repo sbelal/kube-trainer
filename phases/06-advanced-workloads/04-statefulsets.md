@@ -296,4 +296,4 @@ kubectl scale statefulset hello-app-stateful --replicas=2
 
 ---
 
-**Next up:** [Hands-On Exercise →](./05-hands-on-exercise.md)
+**Next up:** [Hands-On Exercise: Advanced Workloads →](./05-hands-on-exercise.md)

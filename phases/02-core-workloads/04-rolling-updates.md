@@ -260,4 +260,4 @@ Before moving to the final hands-on exercise, make sure:
 
 ---
 
-**Next up:** [Hands-On Exercise →](./05-hands-on-exercise.md)
+**Next up:** [Hands-On Exercise: Phase 2 Checkpoint →](./05-hands-on-exercise.md)

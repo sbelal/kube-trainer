@@ -245,4 +245,4 @@ spec:
 
 ---
 
-**Next up:** [Hands-On Exercise →](./05-hands-on-exercise.md)
+**Next up:** [Hands-On Exercise: Fully Configured Deployment →](./05-hands-on-exercise.md)

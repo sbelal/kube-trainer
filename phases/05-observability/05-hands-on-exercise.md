@@ -255,4 +255,8 @@ These tools will be your daily companions when working with Kubernetes in any en
 
 ---
 
-🎉 **Phase 5 Complete!** You now have a solid foundation in Kubernetes observability. Next up is Phase 6: Advanced Workloads (Jobs, CronJobs, DaemonSets, StatefulSets).
+🎉 **Phase 5 Complete!** You now have a solid foundation in Kubernetes observability.
+
+---
+
+**Next up:** [Jobs →](../06-advanced-workloads/01-jobs.md)

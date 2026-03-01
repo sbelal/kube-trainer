@@ -108,4 +108,4 @@ Don't memorize all of these now — you'll learn each one hands-on in the coming
 
 ---
 
-**Next up:** [Architecture Overview →](./02-architecture-overview.md)
+**Next up:** [Kubernetes Architecture Overview →](./02-architecture-overview.md)

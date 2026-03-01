@@ -230,4 +230,8 @@ Together, these implement the **principle of least privilege**: give each worklo
 
 ---
 
-🎉 **Phase 7 Complete!** You now understand Kubernetes RBAC and security fundamentals. Next up is Phase 8: Helm & Kustomize.
+🎉 **Phase 7 Complete!** You now understand Kubernetes RBAC and security fundamentals.
+
+---
+
+**Next up:** [Phase 8: Helm & Kustomize (Coming Soon) →](../../README.md)

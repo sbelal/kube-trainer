@@ -287,3 +287,7 @@ All 5 checks should pass ✅. Once they do, you're ready for **Phase 4: Storage 
 ---
 
 **🎉 Congratulations!** You've completed Phase 3. You now understand how to expose your applications both inside and outside the cluster. In Phase 4, you'll learn about ConfigMaps, Secrets, Volumes, and how Kubernetes manages application configuration and persistent storage.
+
+---
+
+**Next up:** [ConfigMaps →](../04-storage-and-configuration/01-configmaps.md)

@@ -168,4 +168,4 @@ docker run hello-world
 
 ---
 
-**Next up:** [Your First Cluster →](./04-first-cluster.md)
+**Next up:** [Your First Kubernetes Cluster →](./04-first-cluster.md)

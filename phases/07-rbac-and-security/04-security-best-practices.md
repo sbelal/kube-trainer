@@ -208,4 +208,4 @@ kubectl label namespace default pod-security.kubernetes.io/enforce=baseline
 
 ---
 
-**Next up:** [Hands-On Exercise →](./05-hands-on-exercise.md)
+**Next up:** [Hands-On Exercise: RBAC & Security →](./05-hands-on-exercise.md)

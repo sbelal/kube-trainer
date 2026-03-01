@@ -155,4 +155,4 @@ In production, you'd have multiple physical or virtual machines forming a cluste
 
 ---
 
-**Next up:** [Install Tools →](./03-install-tools.md)
+**Next up:** [Installing Your Kubernetes Tools →](./03-install-tools.md)

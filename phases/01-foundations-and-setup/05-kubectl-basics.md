@@ -244,3 +244,7 @@ All 5 checks should pass ✅. Once they do, you're ready for **Phase 2: Core Wor
 ---
 
 **🎉 Congratulations!** You've completed Phase 1. You now have a working Kubernetes environment and have deployed your first application. In Phase 2, you'll learn about Deployments, ReplicaSets, and how Kubernetes manages your workloads at scale.
+
+---
+
+**Next up:** [Pods Deep Dive →](../02-core-workloads/01-pods-deep-dive.md)

@@ -162,3 +162,7 @@ All checks should pass ✅. Once they do, you're ready for **Phase 3: Networking
 ---
 
 **🎉 Congratulations!** You've completed Phase 2. You now understand how Kubernetes manages application workloads — from individual Pods to self-healing, scalable Deployments with rolling updates.
+
+---
+
+**Next up:** [Kubernetes Networking Model →](../03-networking-and-services/01-kubernetes-networking.md)

@@ -170,4 +170,4 @@ minikube delete
 
 ---
 
-**Next up:** [kubectl Basics →](./05-kubectl-basics.md)
+**Next up:** [kubectl Basics & Your First Deployment →](./05-kubectl-basics.md)

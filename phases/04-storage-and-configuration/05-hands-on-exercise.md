@@ -217,3 +217,7 @@ All 5 checks should pass ✅. Once they do, you're ready for **Phase 5: Observab
 ---
 
 **🎉 Congratulations!** You've completed Phase 4. You now know how to externalize configuration, manage secrets, and provide persistent storage for your applications. In Phase 5, you'll learn about logs, monitoring, health probes, and debugging Kubernetes workloads.
+
+---
+
+**Next up:** [Container Logging →](../05-observability/01-container-logging.md)
