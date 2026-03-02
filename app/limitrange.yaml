@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: LimitRange
+metadata:
+  name: hello-prod-limits
+  namespace: hello-prod
+spec:
+  limits:
+  - type: Container
+    default:
+      cpu: 200m
+      memory: 128Mi
+    defaultRequest:
+      cpu: 50m
+      memory: 64Mi
+    max:
+      cpu: 500m
+      memory: 256Mi
+    min:
+      cpu: 25m
+      memory: 32Mi

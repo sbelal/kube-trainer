@@ -268,4 +268,4 @@ Together, these give you precise control over **how many** Pods run and **where*
 
 ---
 
-**Next up:** [Phase 10: Production & CI/CD (Coming Soon) →](../../README.md)
+**Next up:** [Phase 10: Production & CI/CD →](../10-production-and-cicd/01-namespaces.md)

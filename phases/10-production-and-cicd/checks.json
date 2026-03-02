@@ -1,0 +1,72 @@
+[
+    {
+        "id": "namespace-exists",
+        "title": "Namespace hello-prod exists",
+        "type": "command",
+        "command": "kubectl get namespace hello-prod -o jsonpath='{.metadata.name}'",
+        "expect": {
+            "exitCode": 0,
+            "outputContains": "hello-prod"
+        },
+        "fix": {
+            "file": "01-namespaces.md",
+            "section": "Step 2: Create a Namespace"
+        }
+    },
+    {
+        "id": "resourcequota-exists",
+        "title": "ResourceQuota hello-prod-quota exists in hello-prod",
+        "type": "command",
+        "command": "kubectl get resourcequota hello-prod-quota -n hello-prod -o jsonpath='{.metadata.name}'",
+        "expect": {
+            "exitCode": 0,
+            "outputContains": "hello-prod-quota"
+        },
+        "fix": {
+            "file": "02-resource-quotas-and-limit-ranges.md",
+            "section": "Step 1: Create a ResourceQuota"
+        }
+    },
+    {
+        "id": "limitrange-exists",
+        "title": "LimitRange hello-prod-limits exists in hello-prod",
+        "type": "command",
+        "command": "kubectl get limitrange hello-prod-limits -n hello-prod -o jsonpath='{.metadata.name}'",
+        "expect": {
+            "exitCode": 0,
+            "outputContains": "hello-prod-limits"
+        },
+        "fix": {
+            "file": "02-resource-quotas-and-limit-ranges.md",
+            "section": "Step 2: Create a LimitRange"
+        }
+    },
+    {
+        "id": "deployment-in-namespace",
+        "title": "hello-app Deployment exists in hello-prod",
+        "type": "command",
+        "command": "kubectl get deployment hello-app -n hello-prod -o jsonpath='{.metadata.name}'",
+        "expect": {
+            "exitCode": 0,
+            "outputContains": "hello-app"
+        },
+        "fix": {
+            "file": "01-namespaces.md",
+            "section": "Step 3: Deploy into a Namespace"
+        }
+    },
+    {
+        "id": "node-schedulable",
+        "title": "Node is schedulable (uncordoned)",
+        "type": "command",
+        "command": "kubectl get nodes minikube -o jsonpath='{.spec.unschedulable}'",
+        "expect": {
+            "exitCode": 0,
+            "outputContains": ""
+        },
+        "fix": {
+            "file": "04-cluster-maintenance.md",
+            "section": "Step 3: Uncordon the Node"
+        }
+    }
+]

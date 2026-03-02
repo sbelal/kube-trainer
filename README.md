@@ -112,20 +112,6 @@ node --version
 
 Work through each phase in order. Each phase has a folder in `phases/` with markdown lessons and a hands-on exercise.
 
-| Phase | Topic | Status |
-|---|---|---|
-| **[Phase 0: Docker Refresher](phases/00-docker-refresher/)** | Run the app locally, build & run a Docker container | ✅ Available |
-| **[Phase 1: Foundations & Setup](phases/01-foundations-and-setup/)** | What is K8s, architecture, install tools, first cluster, deploy an app | ✅ Available |
-| **[Phase 2: Core Workloads](phases/02-core-workloads/)** | Pods, Deployments, ReplicaSets, rolling updates | ✅ Available |
-| **[Phase 3: Networking & Services](phases/03-networking-and-services/01-kubernetes-networking.md)** | ClusterIP, NodePort, LoadBalancer, Ingress | ✅ Available |
-| **[Phase 4: Storage & Configuration](phases/04-storage-and-configuration/01-configmaps.md)** | ConfigMaps, Secrets, Volumes, PVs, PVCs | ✅ Available |
-| **[Phase 5: Observability](phases/05-observability/01-container-logging.md)** | Logs, monitoring, probes, debugging | ✅ Available |
-| **[Phase 6: Advanced Workloads](phases/06-advanced-workloads/01-jobs.md)** | Jobs, CronJobs, DaemonSets, StatefulSets | ✅ Available |
-| **[Phase 7: RBAC & Security](phases/07-rbac-and-security/01-service-accounts.md)** | ServiceAccounts, Roles, NetworkPolicies | ✅ Available |
-| **[Phase 8: Helm & Kustomize](phases/08-helm-and-kustomize/01-introduction-to-helm.md)** | Package management, environment overlays | ✅ Available |
-| **[Phase 9: Scaling & Scheduling](phases/09-scaling-and-scheduling/01-resource-requests-and-limits.md)** | HPA, resource limits, affinity, taints | ✅ Available |
-| Phase 10: Production & CI/CD | Namespaces, GitOps, cluster maintenance | 🔜 Coming Soon |
-
 ### Start Here: Phase 0
 
 Open the Phase 0 lesson:
@@ -136,9 +122,7 @@ phases/00-docker-refresher/README.md
 
 Once you complete and verify Phase 0, move on to Phase 1 and work through each numbered file in order.
 
----
-
-## Verifying Your Progress
+### Verifying Your Progress
 
 After completing a phase, run the verification command to check your work:
 
@@ -156,6 +140,22 @@ The verifier checks that you've completed all the hands-on objectives for the ph
 - ❌ **Red crosses** for incomplete items, with a link to the relevant lesson
 
 All checks must pass before moving to the next phase.
+
+### All Phases
+
+| Phase | Topic | Status |
+|---|---|---|
+| **[Phase 0: Docker Refresher](phases/00-docker-refresher/)** | Run the app locally, build & run a Docker container | ✅ Available |
+| **[Phase 1: Foundations & Setup](phases/01-foundations-and-setup/)** | What is K8s, architecture, install tools, first cluster, deploy an app | ✅ Available |
+| **[Phase 2: Core Workloads](phases/02-core-workloads/)** | Pods, Deployments, ReplicaSets, rolling updates | ✅ Available |
+| **[Phase 3: Networking & Services](phases/03-networking-and-services/01-kubernetes-networking.md)** | ClusterIP, NodePort, LoadBalancer, Ingress | ✅ Available |
+| **[Phase 4: Storage & Configuration](phases/04-storage-and-configuration/01-configmaps.md)** | ConfigMaps, Secrets, Volumes, PVs, PVCs | ✅ Available |
+| **[Phase 5: Observability](phases/05-observability/01-container-logging.md)** | Logs, monitoring, probes, debugging | ✅ Available |
+| **[Phase 6: Advanced Workloads](phases/06-advanced-workloads/01-jobs.md)** | Jobs, CronJobs, DaemonSets, StatefulSets | ✅ Available |
+| **[Phase 7: RBAC & Security](phases/07-rbac-and-security/01-service-accounts.md)** | ServiceAccounts, Roles, NetworkPolicies | ✅ Available |
+| **[Phase 8: Helm & Kustomize](phases/08-helm-and-kustomize/01-introduction-to-helm.md)** | Package management, environment overlays | ✅ Available |
+| **[Phase 9: Scaling & Scheduling](phases/09-scaling-and-scheduling/01-resource-requests-and-limits.md)** | HPA, resource limits, affinity, taints | ✅ Available |
+| **[Phase 10: Production & CI/CD](phases/10-production-and-cicd/01-namespaces.md)** | Namespaces, GitOps, cluster maintenance | ✅ Available |
 
 ---
 
@@ -187,6 +187,9 @@ kube-trainer/
 │   ├── networkpolicy.yaml            # NetworkPolicy manifest
 │   ├── deployment-with-resources.yaml # Deployment with resource requests/limits
 │   ├── hpa.yaml                      # HorizontalPodAutoscaler manifest
+│   ├── namespace.yaml                # Namespace manifest
+│   ├── resourcequota.yaml            # ResourceQuota manifest
+│   ├── limitrange.yaml               # LimitRange manifest
 │   ├── hello-app-chart/              # Helm chart for hello-app
 │   │   ├── Chart.yaml
 │   │   ├── values.yaml
@@ -264,11 +267,18 @@ kube-trainer/
 │   │   ├── 05-kustomize-overlays.md
 │   │   ├── 06-hands-on-exercise.md
 │   │   └── checks.json
-│   └── 09-scaling-and-scheduling/   # Phase 9
-│       ├── 01-resource-requests-and-limits.md
-│       ├── 02-horizontal-pod-autoscaler.md
-│       ├── 03-node-affinity.md
-│       ├── 04-taints-and-tolerations.md
+│   ├── 09-scaling-and-scheduling/   # Phase 9
+│   │   ├── 01-resource-requests-and-limits.md
+│   │   ├── 02-horizontal-pod-autoscaler.md
+│   │   ├── 03-node-affinity.md
+│   │   ├── 04-taints-and-tolerations.md
+│   │   ├── 05-hands-on-exercise.md
+│   │   └── checks.json
+│   └── 10-production-and-cicd/      # Phase 10
+│       ├── 01-namespaces.md
+│       ├── 02-resource-quotas-and-limit-ranges.md
+│       ├── 03-gitops-overview.md
+│       ├── 04-cluster-maintenance.md
 │       ├── 05-hands-on-exercise.md
 │       └── checks.json
 ├── lib/
