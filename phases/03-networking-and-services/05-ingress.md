@@ -167,27 +167,24 @@ Look for the `Rules` section — it shows how traffic is being routed.
 
 ## Step 4: Test the Ingress
 
-To test, you need to send HTTP requests with the `Host: hello-app.local` header. There are two ways:
+To test, you need to send HTTP requests with the `Host: hello-app.local` header to the Ingress controller.
 
-### Option A: Use curl with --resolve (Recommended)
+### Option A: Use kubectl port-forward (Recommended)
 
-First, get the minikube IP:
+This method works with **all** minikube drivers, including Docker on WSL2.
+
+In a **separate terminal**, port-forward the Ingress controller to your localhost:
 
 ```bash
-minikube ip
+kubectl port-forward -n ingress-nginx service/ingress-nginx-controller 8080:80
 ```
 
-Then use `curl` with the `--resolve` flag to map `hello-app.local` to the minikube IP:
+> 💡 Keep this terminal open — the port-forward runs until you press `Ctrl+C`.
+
+In your **original terminal**, test using `curl` with the `Host` header:
 
 ```bash
-# Replace <MINIKUBE_IP> with the output of 'minikube ip'
-curl --resolve hello-app.local:80:<MINIKUBE_IP> http://hello-app.local
-```
-
-Or as a one-liner:
-
-```bash
-curl --resolve hello-app.local:80:$(minikube ip) http://hello-app.local
+curl -H "Host: hello-app.local" http://127.0.0.1:8080
 ```
 
 You should see the Hello World HTML page!
@@ -195,7 +192,7 @@ You should see the Hello World HTML page!
 Test the health endpoint:
 
 ```bash
-curl --resolve hello-app.local:80:$(minikube ip) http://hello-app.local/health
+curl -H "Host: hello-app.local" http://127.0.0.1:8080/health
 ```
 
 Expected:
@@ -204,25 +201,15 @@ Expected:
 {"status":"ok"}
 ```
 
-### Option B: Edit /etc/hosts
+### Option B: Use curl with --resolve (VirtualBox / HyperKit drivers only)
 
-Alternatively, add an entry to your hosts file:
-
-```bash
-# Get the minikube IP
-minikube ip
-
-# Add it to /etc/hosts (requires sudo)
-echo "$(minikube ip) hello-app.local" | sudo tee -a /etc/hosts
-```
-
-Then you can simply run:
+If you're using a VM-based minikube driver (e.g., VirtualBox or HyperKit) where `minikube ip` returns a directly reachable IP, you can use this approach instead:
 
 ```bash
-curl http://hello-app.local
+curl --resolve hello-app.local:80:$(minikube ip) http://hello-app.local/health
 ```
 
-> ⚠️ **Remember to clean up** the `/etc/hosts` entry when you're done to avoid conflicts.
+> ⚠️ **This does NOT work with the Docker driver on WSL2** — the minikube IP (`192.168.49.2`) sits on a Docker-internal bridge that is not reachable from the host. Use Option A instead.
 
 ---
 
